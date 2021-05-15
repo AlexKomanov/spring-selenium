@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -17,14 +18,28 @@ public class MainPage extends BasePage {
     WebElement cartIcon;
     @FindBy(css = ".inventory_item_name")
     List<WebElement> productsTitles;
+    @FindBy(css = ".pricebar > button")
+    WebElement addToCartButton;
+
+
 
     //Methods
     public void printProductsTitles(){
-        productsTitles.forEach(System.out::println); //Print using JAVA Stream API
+        List<String> products = new ArrayList<>();
+        this.productsTitles.forEach(product -> products.add(product.getText()));
+        products.forEach(System.out::println); //Print using JAVA Stream API
     }
 
     public int getProductsCount(){
         return getListSize(productsTitles);
+    }
+
+    public void addToCart(){
+        clickElement(this.addToCartButton);
+    }
+
+    public void goToCart(){
+        clickElement(cartIcon);
     }
 
     @Override

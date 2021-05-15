@@ -28,6 +28,7 @@ public class SwagLabsPage extends BasePage {
 
     //Methods
     public void goTo(){
+        this.driver.manage().window().maximize();
         this.driver.get(url);
     }
 
