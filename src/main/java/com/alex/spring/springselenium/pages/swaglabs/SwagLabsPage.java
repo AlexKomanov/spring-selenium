@@ -20,6 +20,8 @@ public class SwagLabsPage extends BasePage {
     private CartPage cartPage;
     @Autowired
     private CheckoutInformationPage checkoutInformationPage;
+    @Autowired
+    private CheckoutOverviewPage checkoutOverviewPage;
 
     //Getters of page components
     public MainPage getMainPage() {
@@ -36,6 +38,10 @@ public class SwagLabsPage extends BasePage {
 
     public CheckoutInformationPage getCheckoutInformationPage() {
         return checkoutInformationPage;
+    }
+
+    public CheckoutOverviewPage getCheckoutOverviewPage() {
+        return checkoutOverviewPage;
     }
 
     //Methods

@@ -27,6 +27,7 @@ public class SwagLabsTest extends SpringBaseTestNGTest {
                 .loginToApplication("standard_user", "secret_sauce");
 
         Assert.assertTrue(this.swagLabsPage.getMainPage().isLoaded());
+        swagLabsPage.sleep(2000);
         Assert.assertEquals(this.swagLabsPage.getMainPage().getProductsCount(), 6);
 
         this.swagLabsPage.getMainPage().printProductsTitles();
@@ -35,15 +36,26 @@ public class SwagLabsTest extends SpringBaseTestNGTest {
         swagLabsPage.getMainPage().goToCart();
 
         swagLabsPage.getMainPage().isLoaded();
+        swagLabsPage.sleep(2000);
         this.screenShotUtil.takeScreenShot("cart-page.png");
         Assert.assertEquals(swagLabsPage.getCartPage().getPageTitle(), "YOUR CART");
         swagLabsPage.getCartPage().goCheckout();
 
         swagLabsPage.getCheckoutInformationPage().isLoaded();
+        swagLabsPage.sleep(2000);
         this.screenShotUtil.takeScreenShot("checkout-your-information.png");
         Assert.assertEquals(swagLabsPage.getCheckoutInformationPage().getTitle(), "CHECKOUT: YOUR INFORMATION");
         swagLabsPage.getCheckoutInformationPage().fillInformation("Alexander", "Komanov", "12345678");
         swagLabsPage.getCheckoutInformationPage().continueToOverview();
+
+        swagLabsPage.getCheckoutOverviewPage().isLoaded();
+        swagLabsPage.sleep(2000);
+        this.screenShotUtil.takeScreenShot("checkout-overview-information.png");
+        Assert.assertTrue(swagLabsPage.getCheckoutOverviewPage().getTitle().equals("CHECKOUT: OVERVIEW"));
+        Assert.assertTrue(swagLabsPage.getCheckoutOverviewPage().getTotalLabel().contains("Total"));
+        swagLabsPage.getCheckoutOverviewPage().clickFinish();
+
+
 
         swagLabsPage.sleep(2000);
         this.swagLabsPage.closeBrowser();
