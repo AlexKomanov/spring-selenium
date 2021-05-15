@@ -30,6 +30,10 @@ public class MainPage extends BasePage {
         products.forEach(System.out::println); //Print using JAVA Stream API
     }
 
+    public String getTitle(){
+        return getElementText(productsPageTitle);
+    }
+
     public int getProductsCount(){
         return getListSize(productsTitles);
     }

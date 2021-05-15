@@ -51,13 +51,22 @@ public class SwagLabsTest extends SpringBaseTestNGTest {
         swagLabsPage.getCheckoutOverviewPage().isLoaded();
         swagLabsPage.sleep(2000);
         this.screenShotUtil.takeScreenShot("checkout-overview-information.png");
-        Assert.assertTrue(swagLabsPage.getCheckoutOverviewPage().getTitle().equals("CHECKOUT: OVERVIEW"));
+        Assert.assertEquals(swagLabsPage.getCheckoutOverviewPage().getTitle(), "CHECKOUT: OVERVIEW");
         Assert.assertTrue(swagLabsPage.getCheckoutOverviewPage().getTotalLabel().contains("Total"));
         swagLabsPage.getCheckoutOverviewPage().clickFinish();
 
-
-
+        swagLabsPage.getCheckoutCompletePage().isLoaded();
         swagLabsPage.sleep(2000);
+        this.screenShotUtil.takeScreenShot("checkout-complete.png");
+        Assert.assertEquals(swagLabsPage.getCheckoutCompletePage().getTitle(), "CHECKOUT: COMPLETE!");
+        Assert.assertEquals(swagLabsPage.getCheckoutCompletePage().getHeader(), "THANK YOU FOR YOUR ORDER");
+        Assert.assertEquals(swagLabsPage.getCheckoutCompletePage().getPonyExpressSrc(), "https://www.saucedemo.com/static/media/pony-express.46394a5d.png");
+        swagLabsPage.getCheckoutCompletePage().clickBackHome();
+
+        swagLabsPage.getMainPage().isLoaded();
+        Assert.assertEquals(swagLabsPage.getMainPage().getTitle(), "PRODUCTS");
+
+        swagLabsPage.sleep(1000);
         this.swagLabsPage.closeBrowser();
     }
 }
