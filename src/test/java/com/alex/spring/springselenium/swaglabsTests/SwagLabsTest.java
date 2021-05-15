@@ -39,7 +39,13 @@ public class SwagLabsTest extends SpringBaseTestNGTest {
         Assert.assertEquals(swagLabsPage.getCartPage().getPageTitle(), "YOUR CART");
         swagLabsPage.getCartPage().goCheckout();
 
-        swagLabsPage.sleep(5000);
+        swagLabsPage.getCheckoutInformationPage().isLoaded();
+        this.screenShotUtil.takeScreenShot("checkout-your-information.png");
+        Assert.assertEquals(swagLabsPage.getCheckoutInformationPage().getTitle(), "CHECKOUT: YOUR INFORMATION");
+        swagLabsPage.getCheckoutInformationPage().fillInformation("Alexander", "Komanov", "12345678");
+        swagLabsPage.getCheckoutInformationPage().continueToOverview();
+
+        swagLabsPage.sleep(2000);
         this.swagLabsPage.closeBrowser();
     }
 }
