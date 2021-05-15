@@ -16,6 +16,8 @@ public class SwagLabsPage extends BasePage {
     private MainPage mainPage;
     @Autowired
     private LoginPage loginPage;
+    @Autowired
+    private CartPage cartPage;
 
     //Getters of page components
     public MainPage getMainPage() {
@@ -24,6 +26,10 @@ public class SwagLabsPage extends BasePage {
 
     public LoginPage getLoginPage() {
         return loginPage;
+    }
+
+    public CartPage getCartPage() {
+        return cartPage;
     }
 
     //Methods
