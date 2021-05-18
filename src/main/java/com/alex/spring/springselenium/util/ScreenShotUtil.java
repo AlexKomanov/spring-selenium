@@ -1,5 +1,6 @@
 package com.alex.spring.springselenium.util;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -19,14 +20,16 @@ public class ScreenShotUtil {
 
     @Autowired
     private WebDriver driver;
+    @Autowired
+    private Faker faker;
 
     @Value("${screenshot.path}")
     private Path path;
 
-    public void takeScreenShot(final String imageName){
+    public void takeScreenShot(){
         File screenshot = ((TakesScreenshot)this.driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileCopyUtils.copy(screenshot, this.path.resolve(imageName).toFile());
+            FileCopyUtils.copy(screenshot, this.path.resolve(faker.name().username() + ".png").toFile());
         } catch (IOException e) {
             e.printStackTrace();
         }
