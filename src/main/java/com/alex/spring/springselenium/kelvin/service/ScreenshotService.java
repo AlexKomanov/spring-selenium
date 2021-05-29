@@ -1,11 +1,11 @@
-package com.alex.spring.springselenium.util;
+package com.alex.spring.springselenium.kelvin.service;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
@@ -16,10 +16,10 @@ import java.nio.file.Path;
 
 @Lazy // Creates object only when it required
 @Component
-public class ScreenShotUtil {
+public class ScreenshotService {
 
     @Autowired
-    private WebDriver driver;
+    private ApplicationContext applicationContext;
     @Autowired
     private Faker faker;
 
@@ -27,7 +27,7 @@ public class ScreenShotUtil {
     private Path path;
 
     public void takeScreenShot(){
-        File screenshot = ((TakesScreenshot)this.driver).getScreenshotAs(OutputType.FILE);
+        File screenshot = this.applicationContext.getBean(TakesScreenshot.class).getScreenshotAs(OutputType.FILE);
         try {
             FileCopyUtils.copy(screenshot, this.path.resolve(faker.name().username() + ".png").toFile());
         } catch (IOException e) {

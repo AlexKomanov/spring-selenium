@@ -1,4 +1,4 @@
-package com.alex.spring.springselenium.config;
+package com.alex.spring.springselenium.kelvin.config;
 
 import com.github.javafaker.Faker;
 import org.springframework.context.annotation.Bean;
